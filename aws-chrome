@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#Config
+default_profile='Default' #The one will be copied
+data_dir='~/.config/google-chrome'
+
+temp_profile=$(basename $(mktemp -u))
+
+#Copy the profile directory
+cp -r ${data_dir}/${default_profile} ${data_dir}/${temp_profile}
+
+#Run chrome
+google-chrome --profile-directory=${temp_profile} --app=https://console.aws.amazon.com
+
+echo ${temp_profile}
